@@ -1,0 +1,19 @@
+networks:
+  vteams:
+
+services:
+  server:
+    image: ""
+    container_name: "server"
+    ports:
+      - "8080:80"
+    volumes:
+      - ""
+    restart:
+      "always"
+
+  client:
+    image: ""
+    container_name: ""
+    links:
+      - ""
