@@ -11,9 +11,19 @@ services:
       - ""
     restart:
       "always"
+    networks:
+      vteams:
 
   client:
     image: ""
     container_name: ""
-    links:
-      - ""
+    networks:
+      vteams:
+  
+  database:
+    image: ""
+    container_name: "database"
+    ports:
+      - "3306:3306"
+    networks:
+      vteams:
