@@ -14,6 +14,7 @@ services:
     restart: always
     volumes:
       - "./database/storage:/var/lib/mysql"
+      - "./database/saved:/backup"
     environment:
       MARIADB_ROOT_PASSWORD: "vteampass"
 
