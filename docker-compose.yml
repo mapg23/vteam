@@ -1,6 +1,6 @@
 # ports:
 # - adminer : 8080:8080
-# - db : 
+# - db : 8084:3306
 # - server:
 # - API :
 # - Program :
@@ -11,12 +11,13 @@ services:
   db:
     image: "maacke16/vteam-db:latest"
     container_name: "database"
+    ports:
+      - "8084:3306"
     restart: always
-    volumes:
-      - "./database/storage:/var/lib/mysql"
-      - "./database/saved:/backup"
     environment:
       MARIADB_ROOT_PASSWORD: "vteampass"
+    volumes:
+      - "./database/backups:/backups"
 
 # database interface
   adminer:
@@ -33,6 +34,3 @@ services:
     ports:
       - "8083:1338"
     restart: always
-
-volumes:
-  database:
