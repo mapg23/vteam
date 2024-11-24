@@ -1,29 +1,37 @@
-networks:
-  vteams:
+# ports:
+# - adminer : 8080:8080
+# - db : 
+# - server:
+# - API :
+# - Program :
 
 services:
-  server:
-    image: ""
-    container_name: "server"
-    ports:
-      - "8080:80"
-    volumes:
-      - ""
-    restart:
-      "always"
-    networks:
-      vteams:
-
-  client:
-    image: ""
-    container_name: ""
-    networks:
-      vteams:
-  
-  database:
-    image: ""
+# username: root
+# password: P@ssw0rd
+  db:
+    image: "maacke16/vteam-db:latest"
     container_name: "database"
+    restart: always
+    volumes:
+      - "./database/storage:/var/lib/mysql"
+    environment:
+      MARIADB_ROOT_PASSWORD: "vteampass"
+
+# database interface
+  adminer:
+    image: adminer
+    container_name: "adminer"
+    restart: always
     ports:
-      - "3306:3306"
-    networks:
-      vteams:
+      - 8080:8080
+
+# backend
+  server:
+    image: "maacke16/vteam-server"
+    container_name: "backend"
+    ports:
+      - "8083:1338"
+    restart: always
+
+volumes:
+  database:

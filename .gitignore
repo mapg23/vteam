@@ -1,0 +1,7 @@
+# Ignore the entire database storage directory and related files
+database/storage/
+*.log
+*.err
+*.ibd
+*.frm
+*.ib_buffer_pool
