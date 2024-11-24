@@ -2,6 +2,10 @@ FROM node
 
 WORKDIR /server
 
-COPY * .
+COPY package*.json ./
 
-RUN ["node", "index.js"]
+RUN npm install
+
+COPY index.js .
+
+CMD ["node", "index.js"]
