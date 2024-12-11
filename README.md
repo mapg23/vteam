@@ -12,4 +12,3 @@ readme
     git commit -m "medelande"
     git push origin dev
 ```
-hello
