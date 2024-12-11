@@ -13,5 +13,5 @@ readme
 ```
     git add <files>
     git commit -m "medelande"
-    git push origin dev
+    git push origin <branch-name>
 ```
