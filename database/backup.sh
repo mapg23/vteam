@@ -1,17 +1,22 @@
 #!/bin/bash
 
-# Variables
-BACKUP_DIR="/backup"
+# Set the backup directory
+BACKUP_DIR="./backups"
 DB_NAME="vteam"
 DB_USER="root"
 DB_PASSWORD="vteampass"
-DATE=$(date +"%Y%m%d_%H%M%S")
-BACKUP_FILE="${BACKUP_DIR}/${DB_NAME}_backup_${DATE}.sql"
 
-# Ensure the backup directory exists
-mkdir -p $BACKUP_DIR
+# Create backup directory if it does not exist
+mkdir -p $BACKUP_DIR && chmod 777 $BACKUP_DIR
 
-# Perform the backup (adjust according to your MariaDB settings)
-mysqldump -u $DB_USER -p$DB_PASSWORD $DB_NAME > $BACKUP_FILE
+# Dump the database to a file
 
-echo "Backup created: $BACKUP_FILE"
+until mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASSWORD" -e "SHOW DATABASES;" > /dev/null 2>&1; do
+  echo "Waiting for database to initialize..."
+  sleep 5
+done
+
+while true; do
+    mariadb-dump -u $DB_USER -p$DB_PASSWORD $DB_NAME > $BACKUP_DIR/${DB_NAME}.sql
+    sleep 240
+done
