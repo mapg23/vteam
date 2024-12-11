@@ -17,7 +17,9 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: "vteampass"
     volumes:
-      - "./database/backups:/backups"
+      - "./database:/backups/"
+
+    command: ["/bin/bash", "./backup.sh"]
 
 # database interface
   adminer:
@@ -29,7 +31,7 @@ services:
 
 # backend
   server:
-    image: "maacke16/vteam-server"
+    image: "maacke16/vteam-server:latest"
     container_name: "backend"
     ports:
       - "8083:1338"
