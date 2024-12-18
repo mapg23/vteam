@@ -1,6 +1,14 @@
 name: Build and Publish image to Docker Hub
 on:
-  [workflow_dispatch]
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/Dockerfile'
+      - 'server/Dockerfile'
+      - 'database/Dockerfile'
+      - 'client/Dockerfile'
+      - 'program/Dockerfile'
 
 jobs:
   publish_images:
@@ -13,9 +21,13 @@ jobs:
           docker build ./server/ -t maacke16/vteam-server:latest
           docker build ./database/ -t maacke16/vteam-db:latest
           docker build ./api/ -t maacke16/vteam-api:latest
+          docker build ./client/ -t maacke16/vteam-client:latest
+          docker build ./program/ -t maacke16/vteam-program:latest
       - name: push image
         run: |
           docker login -u maacke16 -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push maacke16/vteam-server:latest
           docker push maacke16/vteam-db:latest
           docker push maacke16/vteam-api:latest
+          docker push maacke16/vteam-client:latest
+          docker push maacke16/vteam-program:latest
