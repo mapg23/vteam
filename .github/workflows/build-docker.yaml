@@ -12,4 +12,5 @@ jobs:
         run: docker build ./server/ -t maacke16/vteam-server:latest
       - name: push image
         run: |
+          docker login -u maacke16 -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push maacke16/vteam-server:latest
