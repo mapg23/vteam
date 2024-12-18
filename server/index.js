@@ -14,7 +14,8 @@ app.use("/customer", customer_route);
 app.use("/admin", admin_route);
 
 app.get("/", (req, res) => {
-    res.redirect("/customer");
+    // res.redirect("/customer");
+    res.send("<h1>Rebuilt</h1>")
 });
 
 app.listen(port, () => {

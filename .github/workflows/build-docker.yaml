@@ -1,0 +1,15 @@
+name: Build and Publish image to Docker Hub
+on:
+  [workflow_dispatch]
+
+jobs:
+  publish_images:
+    runs-on: node
+    steps:
+      - name: ubuntu-latest
+        uses: actions/checkout@v4
+      - name: build image
+        run: docker build ./server/ -t maacke16/vteam-server:latest
+      - name: push image
+        run: |
+          docker push maacke16/vteam-server:latest

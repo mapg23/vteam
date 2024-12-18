@@ -33,6 +33,7 @@ services:
   server:
     image: "maacke16/vteam-server:latest"
     container_name: "backend"
+    build: .
     ports:
       - "8083:1338"
     restart: always
