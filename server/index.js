@@ -4,13 +4,14 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-const customer_route = require("./routes/customer_route.js");
-const admin_route = require("./routes/admin_route.js");
+const customerRoute = require('./routes/customer_route');
+const admin_route = require('./routes/admin_route');
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/customer", customer_route);
+
+app.use("/customer", customerRoute);
 app.use("/admin", admin_route);
 
 app.listen(port, logStartUpDetailsToConsole);
