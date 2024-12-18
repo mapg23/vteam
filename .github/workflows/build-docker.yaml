@@ -26,19 +26,37 @@ jobs:
           username: maacke16
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build & Push Images
+      - name: Build and push server image
         uses: docker/build-push-action@v4
         with:
+          context: ./server/
           push: true
-          tags: |
-            maacke16/vteam-server:latest
-            maacke16/vteam-db:latest
-            maacke16/vteam-api:latest
-            maacke16/vteam-client:latest
-            maacke16/vteam-program:latest
-          context: |
-            ./server/
-            ./database/
-            ./api/
-            ./client/
-            ./program/
+          tags: maacke16/vteam-server:latest
+
+      - name: Build and push database image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./database/
+          push: true
+          tags: maacke16/vteam-db:latest
+
+      - name: Build and push API image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./api/
+          push: true
+          tags: maacke16/vteam-api:latest
+
+      - name: Build and push client image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./client/
+          push: true
+          tags: maacke16/vteam-client:latest
+
+      - name: Build and push program image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./program/
+          push: true
+          tags: maacke16/vteam-program:latest
