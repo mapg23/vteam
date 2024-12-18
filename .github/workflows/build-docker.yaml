@@ -31,32 +31,32 @@ jobs:
         with:
           context: ./server/
           push: true
-          tags: maacke16/vteam-server:latest
+          tags: maacke16/vteam-server
 
       - name: Build and push database image
         uses: docker/build-push-action@v4
         with:
           context: ./database/
           push: true
-          tags: maacke16/vteam-db:latest
+          tags: maacke16/vteam-db
 
       - name: Build and push API image
         uses: docker/build-push-action@v4
         with:
           context: ./api/
           push: true
-          tags: maacke16/vteam-api:latest
+          tags: maacke16/vteam-api
 
       - name: Build and push client image
         uses: docker/build-push-action@v4
         with:
           context: ./client/
           push: true
-          tags: maacke16/vteam-client:latest
+          tags: maacke16/vteam-client
 
       - name: Build and push program image
         uses: docker/build-push-action@v4
         with:
           context: ./program/
           push: true
-          tags: maacke16/vteam-program:latest
+          tags: maacke16/vteam-program

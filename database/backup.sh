@@ -8,6 +8,6 @@ DB_PASSWORD="vteampass"
 
 # Create backup directory if it does not exist
 mkdir -p $BACKUP_DIR && chmod 777 $BACKUP_DIR
-
+# fix
 # Dump the database to a file
 # mariadb-dump -u $DB_USER -p$DB_PASSWORD $DB_NAME > $BACKUP_DIR/${DB_NAME}.sql
