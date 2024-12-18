@@ -5,9 +5,10 @@
 # - API :
 # - Program :
 
-services:
 # username: root
 # password: P@ssw0rd
+
+services:
   db:
     image: "maacke16/vteam-db:latest"
     container_name: "database"

@@ -14,20 +14,31 @@ jobs:
   publish_images:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout source code
         uses: actions/checkout@v4
-      - name: build image
-        run: |
-          docker build ./server/ -t maacke16/vteam-server:latest
-          docker build ./database/ -t maacke16/vteam-db:latest
-          docker build ./api/ -t maacke16/vteam-api:latest
-          docker build ./client/ -t maacke16/vteam-client:latest
-          docker build ./program/ -t maacke16/vteam-program:latest
-      - name: push image
-        run: |
-          docker login -u maacke16 -p ${{ secrets.DOCKER_HUB_TOKEN }}
-          docker push maacke16/vteam-server:latest
-          docker push maacke16/vteam-db:latest
-          docker push maacke16/vteam-api:latest
-          docker push maacke16/vteam-client:latest
-          docker push maacke16/vteam-program:latest
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: maacke16
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build & Push Images
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: |
+            maacke16/vteam-server:latest
+            maacke16/vteam-db:latest
+            maacke16/vteam-api:latest
+            maacke16/vteam-client:latest
+            maacke16/vteam-program:latest
+          context: |
+            ./server/
+            ./database/
+            ./api/
+            ./client/
+            ./program/
