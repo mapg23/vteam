@@ -4,11 +4,11 @@ on:
     branches:
       - main
     paths:
-      - 'api/Dockerfile'
-      - 'server/Dockerfile'
-      - 'database/Dockerfile'
-      - 'client/Dockerfile'
-      - 'program/Dockerfile'
+      - 'api/**'
+      - 'server/**'
+      - 'database/**'
+      - 'client/**'
+      - 'program/**'
 
 jobs:
   publish_images:
