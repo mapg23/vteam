@@ -4,9 +4,9 @@ on:
 
 jobs:
   publish_images:
-    runs-on: node
+    runs-on: ubuntu-latest
     steps:
-      - name: node-latest
+      - name: checkout
         uses: actions/checkout@v4
       - name: build image
         run: docker build ./server/ -t maacke16/vteam-server:latest
