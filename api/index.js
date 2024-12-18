@@ -5,6 +5,7 @@ const app     = express();
 
 // Add a route for the path /
 app.get("/", (req, res) => {
+    res.send("<h1>API</h1>")
 });
 
 

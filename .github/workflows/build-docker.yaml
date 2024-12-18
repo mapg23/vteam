@@ -9,8 +9,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: build image
-        run: docker build ./server/ -t maacke16/vteam-server:latest
+        run: |
+          docker build ./server/ -t maacke16/vteam-server:latest
+          docker build ./database/ -t maacke16/vteam-db:latest
+          docker build ./api/ -t maacke16/vteam-api:latest
       - name: push image
         run: |
           docker login -u maacke16 -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push maacke16/vteam-server:latest
+          docker push maacke16/vteam-db:latest
+          docker push maacke16/vteam-api:latest
