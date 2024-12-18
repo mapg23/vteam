@@ -1,7 +1,9 @@
 FROM node
 
-WORKDIR /server
+WORKDIR /api
 
 COPY * .
 
-RUN ["node", "index.js"]
+RUN npm install
+
+CMD ["node", "index.js"]
