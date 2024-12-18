@@ -9,7 +9,6 @@ on:
       - 'database/Dockerfile'
       - 'client/Dockerfile'
       - 'program/Dockerfile'
-  workflow_dispatch:
 
 jobs:
   publish_images:
